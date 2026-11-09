@@ -7,8 +7,18 @@ Developer tools that run on your own machine: code review for Java services, and
 **[Codist](https://github.com/abxengg/codist)** reviews a Java and Spring Boot repository locally. It watches the repository, checks every new commit with deterministic rules and a local AI model (via Ollama), and shows the results in your browser. Each model claim is checked against the code before it is shown. Nothing leaves your machine, and it never changes your code unless you approve a fix.
 
 ```sh
+# macOS / Linux
 curl -fsSL https://raw.githubusercontent.com/abxengg/codist/remaster/install.sh | sh
+
+# Docker (includes git, Java 21 and Maven)
+docker run --rm -p 8080:8080 -v "$PWD:/repo" -v codist-data:/data \
+  --add-host=host.docker.internal:host-gateway ghcr.io/abxengg/codist
+
+# Go
+go install github.com/abxengg/codist@latest
 ```
+
+Windows: `irm https://raw.githubusercontent.com/abxengg/codist/remaster/install.ps1 | iex`
 
 | Module | What it does |
 |---|---|
